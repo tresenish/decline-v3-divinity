@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #fafafa;
+}
+
+/* Slow spin animation for blobs */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Serenity-save FeaturesSection: text / cards appear on scroll */
+.reveal-scroll {
+  opacity: 0;
+  transform: translateY(48px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+}
+
+.reveal-scroll.reveal-scroll--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* --- Serenity-save smudges (HeroSection + FeaturesSection), copied verbatim logic --- */
+@keyframes serenity-blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  12.5% {
+    transform: translate(60px, -75px) scale(1.05);
+  }
+  25% {
+    transform: translate(120px, -150px) scale(1.2);
+  }
+  37.5% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+  50% {
+    transform: translate(-90px, 130px) scale(0.8);
+  }
+  62.5% {
+    transform: translate(-30px, 100px) scale(0.9);
+  }
+  75% {
+    transform: translate(100px, 70px) scale(1.1);
+  }
+  87.5% {
+    transform: translate(50px, 20px) scale(1.05);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+/** Smaller drift for corner-only blobs (Features V1) so motion does not sweep across copy/cards */
+@keyframes serenity-blob-corner {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(10px, -14px) scale(1.03);
+  }
+  50% {
+    transform: translate(-12px, 10px) scale(0.98);
+  }
+  75% {
+    transform: translate(8px, 8px) scale(1.02);
+  }
+}
+
+/* Blob motion referenced from styled-components (AmbientOrbs). */
