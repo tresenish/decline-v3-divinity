@@ -35,20 +35,22 @@ const Header = styled.div`
 
 const StatHighlight = styled.div`
   display: inline-block;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #888;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 1rem;
 `;
 
 const Title = styled.h2`
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #222;
   margin: 0 0 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
 
   @media (max-width: 768px) {
     font-size: 2rem;

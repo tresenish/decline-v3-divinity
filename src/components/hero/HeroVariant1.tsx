@@ -30,18 +30,6 @@ const Inner = styled.div`
   text-align: center;
 `;
 
-const Badge = styled.span`
-  display: inline-block;
-  background: #fff;
-  padding: 0.6rem 1.5rem;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-`;
-
 const Title = styled.h1`
   font-size: 3.75rem;
   font-weight: 700;
@@ -60,10 +48,11 @@ const Title = styled.h1`
 
 const Tagline = styled.div`
   font-family: 'Playfair Display', Georgia, serif;
-  font-style: italic;
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #888;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   margin-bottom: 1rem;
 
   @media (max-width: 768px) {
@@ -188,8 +177,7 @@ const HeroVariant1: React.FC = () => {
     <Section id="hero">
       <Inner>
         <HeroStagger>
-          <Badge>Payment Recovery Platform</Badge>
-          <Tagline>Effortless recovery, exceptional results</Tagline>
+          <Tagline>Effortless recovery,<br />exceptional results</Tagline>
           <Title>
             {hero.title}
           </Title>

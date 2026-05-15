@@ -13,10 +13,11 @@ const phonePath =
 
 export function SupportHeroPhoneBlock({
   phoneDisplay,
-  availability,
+  availability = '',
   phoneColor,
   availabilityColor,
-}: Pick<SupportHeroModel, 'phoneDisplay' | 'phoneHref' | 'availability'> & {
+}: Pick<SupportHeroModel, 'phoneDisplay' | 'phoneHref'> & {
+  availability?: string;
   phoneColor?: string;
   availabilityColor?: string;
 }) {

@@ -34,12 +34,13 @@ const CTACard = styled.div`
 `;
 
 const Title = styled.h2`
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 2.75rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #fff;
   margin: 0 0 1rem;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
 
   @media (max-width: 768px) {
     font-size: 2rem;

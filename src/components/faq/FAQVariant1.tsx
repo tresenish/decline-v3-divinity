@@ -25,11 +25,12 @@ const Header = styled.div`
 `;
 
 const Title = styled.h2`
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #222;
   margin: 0 0 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
 
   @media (max-width: 768px) {
     font-size: 2rem;

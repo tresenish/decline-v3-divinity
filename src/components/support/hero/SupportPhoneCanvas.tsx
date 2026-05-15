@@ -16,8 +16,8 @@ type Props = {
 const SupportPhoneCanvas: React.FC<Props> = ({
   phoneDisplay,
   availability,
-  phoneColor = '#ffffff',
-  availabilityColor = 'rgba(255, 255, 255, 0.8)',
+  phoneColor = '#222',
+  availabilityColor = '#888',
   phoneSize = 32,
   availabilitySize = 16,
 }) => {

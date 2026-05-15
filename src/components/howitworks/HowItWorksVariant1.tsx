@@ -4,19 +4,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useContent } from '../../context/ThemeContext';
+import InfinityBlobs from '../InfinityBlobs';
 
 const Section = styled.section`
   padding: 6rem 2rem;
   background: #fff;
+  position: relative;
+  overflow: hidden;
 
   @media (max-width: 768px) {
     padding: 4rem 1.5rem;
   }
 `;
 
+const BlobsBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0.4;
+`;
+
 const Inner = styled.div`
   max-width: 1000px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 `;
 
 const Header = styled.div`
@@ -25,11 +40,12 @@ const Header = styled.div`
 `;
 
 const Title = styled.h2`
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #222;
   margin: 0 0 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
 
   @media (max-width: 768px) {
     font-size: 2rem;
@@ -121,6 +137,9 @@ const HowItWorksVariant1: React.FC = () => {
 
   return (
     <Section id="how-it-works">
+      <BlobsBackground>
+        <InfinityBlobs />
+      </BlobsBackground>
       <Inner>
         <Header>
           <Title>{howItWorks.sectionTitle}</Title>
