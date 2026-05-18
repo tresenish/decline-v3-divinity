@@ -7,7 +7,7 @@ import { useContent, useCompanyInfo } from '../context/ThemeContext';
 
 const Section = styled.section`
   padding: 10rem 1.5rem 6rem;
-  background: linear-gradient(135deg, #fdfcfb 0%, #f7f5f3 50%, #f0ece8 100%);
+  background: #fafafa;
   min-height: 100vh;
 `;
 
@@ -32,21 +32,23 @@ const LeftColumn = styled.div``;
 
 const Label = styled.span`
   display: inline-block;
-  font-size: 0.75rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(26, 43, 74, 0.5);
-  letter-spacing: 0.2em;
+  color: #888;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
 `;
 
 const Title = styled.h1`
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 3rem;
   font-weight: 600;
-  color: #1a2b4a;
+  color: #222;
   margin: 0 0 1.5rem;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
 
   @media (max-width: 768px) {
     font-size: 2.25rem;
@@ -55,7 +57,7 @@ const Title = styled.h1`
 
 const Desc = styled.p`
   font-size: 1.1rem;
-  color: rgba(26, 43, 74, 0.7);
+  color: #666;
   line-height: 1.7;
   margin: 0 0 2.5rem;
   max-width: 400px;
@@ -63,11 +65,13 @@ const Desc = styled.p`
 
 const ResponseNote = styled.p`
   font-size: 0.9rem;
-  color: rgba(26, 43, 74, 0.5);
+  color: #888;
   line-height: 1.6;
   margin: 0 0 3rem;
-  padding-left: 1rem;
-  border-left: 1px solid rgba(26, 43, 74, 0.2);
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 `;
 
 const ContactDetails = styled.div`
@@ -82,22 +86,21 @@ const ContactLabel = styled.span`
   display: block;
   font-size: 0.75rem;
   font-weight: 600;
-  color: rgba(26, 43, 74, 0.4);
+  color: #888;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
 `;
 
 const ContactValue = styled.a`
-  font-size: 1.25rem;
-  font-weight: 300;
-  color: rgba(26, 43, 74, 0.8);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #222;
   text-decoration: none;
-  font-family: 'Cormorant Garamond', Georgia, serif;
   transition: color 0.3s ease;
 
   &:hover {
-    color: #1a2b4a;
+    color: #0074D9;
   }
 `;
 
@@ -127,73 +130,80 @@ const FormGroup = styled.div`
 
 const FormLabel = styled.label`
   font-size: 0.85rem;
-  font-weight: 500;
-  color: rgba(26, 43, 74, 0.7);
+  font-weight: 600;
+  color: #444;
 `;
 
 const FormInput = styled.input`
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(26, 43, 74, 0.15);
+  background: #fff;
+  border: none;
+  border-radius: 16px;
   padding: 1rem 1.25rem;
   font-size: 1rem;
-  color: #1a2b4a;
+  color: #222;
   font-family: inherit;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 
   &::placeholder {
-    color: rgba(26, 43, 74, 0.35);
+    color: #aaa;
   }
 
   &:focus {
     outline: none;
-    border-color: rgba(26, 43, 74, 0.4);
-    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 116, 217, 0.15);
   }
 `;
 
 const FormTextarea = styled.textarea`
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(26, 43, 74, 0.15);
+  background: #fff;
+  border: none;
+  border-radius: 16px;
   padding: 1rem 1.25rem;
   font-size: 1rem;
-  color: #1a2b4a;
+  color: #222;
   font-family: inherit;
   resize: vertical;
   min-height: 120px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 
   &::placeholder {
-    color: rgba(26, 43, 74, 0.35);
+    color: #aaa;
   }
 
   &:focus {
     outline: none;
-    border-color: rgba(26, 43, 74, 0.4);
-    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 116, 217, 0.15);
   }
 `;
 
 const SubmitButton = styled.button`
-  background: #1a2b4a;
-  color: #ffffff;
-  border: 2px solid #1a2b4a;
-  padding: 1.1rem 2.5rem;
-  font-size: 0.85rem;
+  background: linear-gradient(135deg, #0074D9 0%, #39CCCC 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   transition: all 0.3s ease;
   align-self: flex-start;
+  box-shadow: 0 4px 20px rgba(0, 116, 217, 0.35);
 
   &:hover {
-    background: transparent;
-    color: #1a2b4a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 116, 217, 0.45);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    transform: none;
   }
 `;
 

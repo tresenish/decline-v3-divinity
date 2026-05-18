@@ -16,6 +16,14 @@ const Section = styled.section`
   background: #f8f8f8;
   overflow: visible;
 
+  @media (min-width: 1025px) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
   @media (max-width: 768px) {
     padding: 4rem 1.5rem;
     padding-bottom: 6rem;

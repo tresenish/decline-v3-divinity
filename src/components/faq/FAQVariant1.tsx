@@ -9,6 +9,14 @@ const Section = styled.section`
   padding: 6rem 2rem;
   background: #f8f8f8;
 
+  @media (min-width: 1025px) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
   @media (max-width: 768px) {
     padding: 4rem 1.5rem;
   }
@@ -128,7 +136,7 @@ const FAQVariant1: React.FC = () => {
           {items.map((item, index) => {
             const open = openIndex === index;
             return (
-              <Item key={index}>
+              <Item key={index} className="slide-child">
                 <Question
                   type="button"
                   $open={open}

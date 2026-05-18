@@ -10,6 +10,14 @@ const Section = styled.section`
   padding: 6rem 2rem;
   background: #fff;
 
+  @media (min-width: 1025px) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
   @media (max-width: 768px) {
     padding: 4rem 1.5rem;
   }
@@ -144,7 +152,7 @@ const CTAVariant3: React.FC = () => {
   return (
     <Section id="cta">
       <Inner>
-        <CTACard>
+        <CTACard className="slide-child">
           <Title>{cta.sectionTitle}</Title>
           <Desc>{cta.sectionDescription}</Desc>
           <CTAButton type="button" onClick={goToGetStarted}>
@@ -153,7 +161,7 @@ const CTAVariant3: React.FC = () => {
         </CTACard>
         <ProofGrid>
           {cta.features.map((f, i) => (
-            <ProofCard key={i}>
+            <ProofCard key={i} className="slide-child">
               <ProofIcon $color={colors[i]}>
                 <svg viewBox="0 0 24 24">
                   <path d={f.icon} />

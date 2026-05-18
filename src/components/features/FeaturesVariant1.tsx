@@ -9,6 +9,14 @@ const Section = styled.section`
   padding: 6rem 2rem;
   background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
 
+  @media (min-width: 1025px) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
   @media (max-width: 768px) {
     padding: 4rem 1.5rem;
   }
@@ -160,6 +168,7 @@ const FeaturesVariant1: React.FC = () => {
           {items.map((item, idx) => (
             <Card
               key={idx}
+              className="slide-child"
               $accent={accents[idx]}
               $span={idx === 0 ? 2 : idx === 5 ? 3 : undefined}
             >

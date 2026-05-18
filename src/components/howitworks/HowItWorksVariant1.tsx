@@ -12,6 +12,14 @@ const Section = styled.section`
   position: relative;
   overflow: hidden;
 
+  @media (min-width: 1025px) {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
   @media (max-width: 768px) {
     padding: 4rem 1.5rem;
   }
@@ -147,7 +155,7 @@ const HowItWorksVariant1: React.FC = () => {
         </Header>
         <StepsGrid>
           {steps.map((step, index) => (
-            <StepCard key={index}>
+            <StepCard key={index} className="slide-child">
               <StepNumber $color={colors[index]}>{index + 1}</StepNumber>
               <StepTitle>{step.title}</StepTitle>
               <StepDesc>{step.description}</StepDesc>

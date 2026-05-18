@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import IntroScreen from './components/IntroScreen';
 import styled from 'styled-components';
-import HeroFeaturesWrapper from './components/HeroFeaturesWrapper';
-import HowItWorksWhyRecoveryWrapper from './components/HowItWorksWhyRecoveryWrapper';
-import CTAFAQWrapper from './components/CTAFAQWrapper';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import HeroSection from './components/HeroSection';
+import FeaturesSection from './components/FeaturesSection';
+import HowItWorksSection from './components/HowItWorksSection';
+import WhyRecoverySection from './components/WhyRecoverySection';
+import CTASection from './components/CTASection';
+import FAQSection from './components/FAQSection';
+import SlideReveal from './components/SlideReveal';
+import { AnimatedBlobs } from './components/blobs';
+import { useIsDSTheme } from './context/ThemeContext';
 import SupportPage from './pages/SupportPage';
 import DataSubjectRequestPage from './pages/DataSubjectRequestPage';
 import ESignaturePage from './pages/ESignaturePage';
@@ -31,28 +37,142 @@ const AppContainer = styled.div`
   }
 `;
 
-const HomeShell = styled.div`
-  position: relative;
-  isolation: isolate;
+const ScrollSnapContainer = styled.div`
+  @media (min-width: 1025px) {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    perspective: 1000px;
+    perspective-origin: center center;
+
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
-const HomeContent = styled.div`
+const Slide = styled.section`
+  @media (min-width: 1025px) {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+`;
+
+const FooterSlide = styled.section`
+  @media (min-width: 1025px) {
+    scroll-snap-align: end;
+  }
+`;
+
+const HeroSlide = styled(Slide)`
+  position: relative;
+  background: #fafafa;
+`;
+
+const BlobsLayer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+`;
+
+const SlideContent = styled.div`
   position: relative;
   z-index: 1;
+  width: 100%;
 `;
 
 const HomePage: React.FC = () => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const isDSTheme = useIsDSTheme();
+
+  // Handle hash navigation for scroll-snap container
+  useEffect(() => {
+    const handleHashScroll = () => {
+      const hash = window.location.hash;
+      if (hash && scrollContainerRef.current) {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          // On desktop, scroll within the snap container
+          if (window.innerWidth > 1024) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      }
+    };
+
+    handleHashScroll();
+    window.addEventListener('hashchange', handleHashScroll);
+    return () => window.removeEventListener('hashchange', handleHashScroll);
+  }, []);
+
   return (
     <>
       <Header />
-      <HomeShell>
-        <HomeContent>
-          <HeroFeaturesWrapper />
-          <HowItWorksWhyRecoveryWrapper />
-          <CTAFAQWrapper />
-        </HomeContent>
-      </HomeShell>
-      <Footer />
+      <ScrollSnapContainer ref={scrollContainerRef}>
+        <HeroSlide>
+          <BlobsLayer>
+            <AnimatedBlobs />
+          </BlobsLayer>
+          <SlideContent>
+            <SlideReveal>
+              <HeroSection />
+            </SlideReveal>
+          </SlideContent>
+        </HeroSlide>
+
+        <Slide id="features-slide">
+          <SlideReveal>
+            <FeaturesSection />
+          </SlideReveal>
+        </Slide>
+
+        <Slide id="how-it-works-slide">
+          <SlideReveal>
+            <HowItWorksSection />
+          </SlideReveal>
+        </Slide>
+
+        {isDSTheme && (
+          <Slide id="why-recovery-slide">
+            <SlideReveal>
+              <WhyRecoverySection />
+            </SlideReveal>
+          </Slide>
+        )}
+
+        <Slide id="cta-slide">
+          <SlideReveal>
+            <CTASection />
+          </SlideReveal>
+        </Slide>
+
+        <Slide id="faq-slide">
+          <SlideReveal>
+            <FAQSection />
+          </SlideReveal>
+        </Slide>
+
+        <FooterSlide>
+          <SlideReveal>
+            <Footer />
+          </SlideReveal>
+        </FooterSlide>
+      </ScrollSnapContainer>
     </>
   );
 };
@@ -74,9 +194,9 @@ function App() {
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      }, 100);
-    } else {
-      // Scroll to top on route change
+      }, 150);
+    } else if (location.pathname !== '/') {
+      // Scroll to top on route change (non-home pages)
       window.scrollTo(0, 0);
     }
   }, [location, navigate]);

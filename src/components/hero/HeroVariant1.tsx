@@ -18,6 +18,10 @@ const Section = styled.section`
   background: transparent;
   overflow: hidden;
 
+  @media (min-width: 1025px) {
+    padding: 4rem 2rem;
+  }
+
   @media (max-width: 768px) {
     min-height: auto;
     padding: 6rem 1.5rem 4rem;
@@ -169,6 +173,56 @@ const StatLabel = styled.div`
   font-weight: 500;
 `;
 
+const ScrollIndicator = styled.div`
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.6;
+  animation: bounce 2s ease-in-out infinite;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    40% {
+      transform: translateX(-50%) translateY(-8px);
+    }
+    60% {
+      transform: translateX(-50%) translateY(-4px);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+const ScrollText = styled.span`
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+`;
+
+const ScrollArrow = styled.div`
+  width: 24px;
+  height: 24px;
+  border-right: 2px solid #888;
+  border-bottom: 2px solid #888;
+  transform: rotate(45deg);
+`;
+
 const HeroVariant1: React.FC = () => {
   const { hero, headerPrimaryCtaLabel } = useContent();
   const goToGetStarted = useGoToGetStarted();
@@ -206,6 +260,10 @@ const HeroVariant1: React.FC = () => {
           </Stats>
         </HeroStagger>
       </Inner>
+      <ScrollIndicator onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+        <ScrollText>Scroll</ScrollText>
+        <ScrollArrow />
+      </ScrollIndicator>
     </Section>
   );
 };
